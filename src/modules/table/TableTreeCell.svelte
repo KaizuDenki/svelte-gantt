@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { SvelteRow } from "src/core/row";
 
-    import { createEventDispatcher, getContext } from "svelte";
+    import { createEventDispatcher, getContext, onMount } from "svelte";
 
     export let row: SvelteRow;
     
@@ -14,6 +14,10 @@
             dispatch('rowExpanded', { row });
         }
     }
+
+    onMount(() => {      
+        if(!row.expanded) dispatch('rowCollapsed', { row });
+    });
 </script>
 
 <div class="sg-cell-inner" style="padding-left: {row.childLevel*3}em">
