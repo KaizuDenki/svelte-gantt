@@ -12,6 +12,7 @@ export interface RowModel {
     iconClass?: string;
     /** Url of image in row header */
     imageSrc?: string;
+    expanded?: boolean;
 }
 
 export interface SvelteRow {
@@ -46,12 +47,14 @@ export class RowFactory {
         row.enableDragging = row.enableDragging === undefined ? true : row.enableDragging;
         // height of row element
         const height = row.height || this.rowHeight;
+        const expanded = row.expanded === undefined ? true: row.expanded
+
 
         return {
             model: row,
             y,
             height,
-            expanded: true
+            expanded
         }
     }
 
@@ -71,6 +74,7 @@ export class RowFactory {
 
         rowModels.forEach(rowModel => {
             const row = this.createRow(rowModel, ctx.y);
+            row.hidden = parent?.expanded === undefined ? false: !row.expanded
             ctx.result.push(row);
             rowsAtLevel.push(row);
             allRows.push(row);
