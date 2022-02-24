@@ -281,6 +281,7 @@
         api.registerEvent('tasks', 'changed');
         api.registerEvent('gantt', 'viewChanged');
         api.registerEvent('tasks', 'dblclicked');
+        api.registerEvent('gantt', 'dateSelected');
 
         mounted = true;
     });
@@ -394,6 +395,7 @@
     function onDateSelected(event) {
         $_from = event.detail.from;
         $_to = event.detail.to;
+        api['gantt'].raise.dateSelected(event.detail);
     }
 
     function initRows(rowsData) {
