@@ -14,7 +14,7 @@ export class DragDropManager
             let rowElement = elements.find((element) => !!element.getAttribute('data-row-id'));
             if(rowElement !== undefined) {
                 const rowId = parseInt(rowElement.getAttribute('data-row-id'));
-                const { entities } = get(rowStore);
+                const entities = get(rowStore);
                 const targetRow = entities[rowId];
 
                 if(targetRow.model.enableDragging){
