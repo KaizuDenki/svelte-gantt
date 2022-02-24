@@ -35,15 +35,34 @@
         const headers = [];
         let headerTime = startOf($from, header.unit);
 
-        for(let i = 0; i < columnCount; i++){
+        let headerDuration = header.duration;
+        let calculatedWidth = columnWidth;
+        let d = new Date($from).getDate();
+        let m = new Date($from).getMonth();
+        for (let i = 0; i < columnCount; i++) {
+            m++;
+            let nextMonth = new Date(new Date($from).setMonth(m));
+            if (header.unit === "month") {
+                let e = new Date(nextMonth.setDate(0)).getDate();
+                let headerDurationDay = i > 0 ? e : e - d + 1
+                headerDuration = headerDurationDay * 24 * 60 * 60 * 1000;
+                calculatedWidth = (columnWidth / 30) * headerDurationDay;
+
+                headerTime = startOf(nextMonth.valueOf(), header.unit);
+                console.log(new Date(headerTime))
+            }
             headers.push({
-                width: Math.min(columnWidth, $width), 
+                width: Math.min(calculatedWidth, $width),
                 label: dateAdapter.format(headerTime, header.format),
                 from: headerTime,
-                to: headerTime + header.duration,
-                unit: header.unit
+                to: headerTime + headerDuration,
+                //to: headerTime + header.duration,
+                unit: header.unit,
             });
-            headerTime += header.duration;
+            if (header.unit !== "month") {
+                headerTime += headerDuration;
+            }
+            //headerTime += header.duration;
         }
         _headers = headers;
     }
