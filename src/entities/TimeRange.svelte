@@ -13,7 +13,7 @@
     };
 </script>
 
-<div class="sg-time-range" class:moving="{resizing}" style="width:{_position.width}px;left:{_position.x}px">
+<div class="sg-time-range {model.classes}" class:moving="{resizing}" style="width:{_position.width}px;left:{_position.x}px">
     <div class="sg-time-range-label">{model.label}</div>
 </div>
 <style>
