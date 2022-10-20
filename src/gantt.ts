@@ -1,13 +1,16 @@
-import { ColumnService } from './core/column';
+import type  { ColumnService } from './core/column';
 import { GanttApi } from './core/api';
-import { Component } from "./core/svelte";
+import type { Component } from "./core/svelte";
 import { DragDropManager } from './core/drag';
-import { RowModel, RowFactory, SvelteRow } from './core/row';
-import { TaskModel, TaskFactory, SvelteTask } from './core/task';
-import { TimeRangeModel, TimeRangeFactory } from './core/timeRange';
+import type  { RowModel, SvelteRow } from './core/row';
+import { RowFactory } from './core/row';
+import type { TaskModel, SvelteTask } from './core/task';
+import { TaskFactory } from './core/task';
+import type { TimeRangeModel } from './core/timeRange';
+import { TimeRangeFactory } from './core/timeRange';
 import { GanttUtils } from './utils/utils';
-import { DependencyModel } from './modules/dependencies';
-import { TableHeader } from './modules/table/tableHeader';
+import type { DependencyModel } from './modules/dependencies';
+import type { TableHeader } from './modules/table/tableHeader';
 
 interface Header { 
     unit:string; 
